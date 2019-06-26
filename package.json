@@ -5,14 +5,16 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "cd src && npm run build && cd .. && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd src && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm start\" \"cd src && npm run serve\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1"
   }
