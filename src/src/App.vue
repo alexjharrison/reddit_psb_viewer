@@ -2,21 +2,27 @@
   <div>
     <h1>Photoshop Battalias</h1>
     <div id="app">
-      <post-thumb v-for="post in posts" :post="post" :key="post.id"/>
+      <span @click="selectedPost = post.id" v-for="post in posts" :key="post.id">
+        <post-thumb :post="post"/>
+      </span>
     </div>
+    <pop-out @clear="selectedPost = ''" :id="selectedPost" v-if="selectedPost"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import PostThumb from "./components/PostThumb";
+import PopOut from "./components/PopOut";
 export default {
   components: {
-    PostThumb
+    PostThumb,
+    PopOut
   },
   data() {
     return {
-      posts: ""
+      posts: "",
+      selectedPost: ""
     };
   },
   async mounted() {
@@ -39,7 +45,7 @@ export default {
   justify-content: space-around;
   align-items: flex-start;
 }
-#app * {
+#app > * {
   margin: 10px;
   border: 2px solid teal;
   padding: 10px;
